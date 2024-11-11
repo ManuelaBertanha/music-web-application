@@ -6,6 +6,7 @@
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
+        "SPOTIFY_WEB_API_BASE_URI": "https://api.spotify.com",
         "TOKEN_ENDPOINT_URI": "https://accounts.spotify.com/api/token"
       },
       "dotnetRunMessages": true,
