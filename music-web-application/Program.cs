@@ -38,7 +38,7 @@ namespace music_web_application
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Name = "Authorization",
-                    Type = SecuritySchemeType.Http, // ver se é OAuth2
+                    Type = SecuritySchemeType.Http, // OAuth2 ?
                     Scheme = "Bearer",
                     BearerFormat = "JWT",
                     In = ParameterLocation.Header,
