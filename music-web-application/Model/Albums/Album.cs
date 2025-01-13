@@ -1,6 +1,6 @@
-namespace music_web_application.Model.Albums;
-
 using System.Text.Json.Serialization;
+
+namespace music_web_application.Model.Albums;
 
 public class Album
 {

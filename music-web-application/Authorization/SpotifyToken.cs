@@ -1,16 +1,15 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace music_web_application.Authorization
+namespace music_web_application.Authorization;
+
+public class SpotifyToken
 {
-    public class SpotifyToken
-    {
-        [JsonPropertyName("access_token")]
-        private string _accessToken {  get; set; }
+    [JsonPropertyName("access_token")]
+    private string _accessToken {  get; set; }
 
-        [JsonPropertyName("token_type")]
-        private string _tokenType {  get; set; }
+    [JsonPropertyName("token_type")]
+    private string _tokenType {  get; set; }
 
-        [JsonPropertyName("expires_in")]
-        private int _expiresIn { get; set; }
-    }
+    [JsonPropertyName("expires_in")]
+    private int _expiresIn { get; set; }
 }
