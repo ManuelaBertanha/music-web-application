@@ -1,4 +1,4 @@
-using Microsoft.OpenApi.Models;
+using music_web_application.Authorization;
 
 namespace music_web_application
 {
@@ -30,37 +30,11 @@ namespace music_web_application
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
             
-            builder.Services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Music Web Application", Version = "v1" });
-
-                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-                {
-                    Name = "Authorization",
-                    Type = SecuritySchemeType.Http, // OAuth2 ?
-                    Scheme = "Bearer",
-                    BearerFormat = "JWT",
-                    In = ParameterLocation.Header,
-                    Description = "AAA"
-                });
-
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement
-                {
-                    {
-                        new OpenApiSecurityScheme
-                        {
-                            Reference = new OpenApiReference
-                            {
-                                Type = ReferenceType.SecurityScheme,
-                                Id = "Bearer"
-                            }
-                        },
-                        Array.Empty<string>()
-                    }
-                });
-            });
-
+            builder.Services.AddHttpClient<SpotifyAuthService>();
+            builder.Services.AddSingleton<SpotifyAuthService>();
+            
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
