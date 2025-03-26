@@ -7,6 +7,8 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "SPOTIFY_WEB_API_BASE_URI": "https://api.spotify.com",
+        "SPOTIFY_WEB_API_CLIENT_ID": "XXX",
+        "SPOTIFY_WEB_API_CLIENT_SECRET": "XXX",
         "SPOTIFY_WEB_API_TOKEN_ENDPOINT_URI": "https://accounts.spotify.com/api/token"
       },
       "dotnetRunMessages": true,
