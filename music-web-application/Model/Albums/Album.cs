@@ -5,62 +5,62 @@ namespace music_web_application.Model.Albums;
 public class Album
 {
     [JsonPropertyName("album_type")]
-    private string _albumType { get; set; }
+    public string AlbumType { get; set; }
 
     [JsonPropertyName("total_tracks")]
-    private int _totalTracks { get; set; }
+    public int TotalTracks { get; set; }
 
     [JsonPropertyName("available_markets")]
-    private List<string> _availableMarkets { get; set; }
+    public List<string> AvailableMarkets { get; set; }
 
     [JsonPropertyName("external_urls")]
-    private ExternalUrl _externalUrl { get; set; }
+    public ExternalUrl ExternalUrl { get; set; }
 
     [JsonPropertyName("href")]
-    private string _href { get; set; }
+    public string Href { get; set; }
 
     [JsonPropertyName("id")]
-    private string _id { get; set; }
+    public string Id { get; set; }
 
     [JsonPropertyName("images")]
-    private List<Image> _images { get; set; }
+    public List<Image> Images { get; set; }
 
     [JsonPropertyName("name")]
-    private string _name { get; set; }
+    public string Name { get; set; }
 
     [JsonPropertyName("release_date")]
-    private string _releaseDate { get; set; }
+    public string ReleaseDate { get; set; }
 
     [JsonPropertyName("release_date_precision")]
-    private string _releaseDatePrecision { get; set; }
+    public string ReleaseDatePrecision { get; set; }
 
     [JsonPropertyName("restrictions")]
-    private Restriction _restriction { get; set; }
+    public Restriction Restriction { get; set; }
 
     [JsonPropertyName("type")]
-    private string _type { get; set; }
+    public string Type { get; set; }
 
     [JsonPropertyName("uri")]
-    private string _uri { get; set; }
+    public string Uri { get; set; }
 
     [JsonPropertyName("artists")]
-    private List<Artist> _artists { get; set; }
+    public List<Artist> Artists { get; set; }
 
     [JsonPropertyName("tracks")]
-    private Track _tracks { get; set; }
+    public Track Tracks { get; set; }
 
     [JsonPropertyName("copyrights")]
-    private List<Copyright> _copyrights { get; set; }
+    public List<Copyright> Copyrights { get; set; }
 
     [JsonPropertyName("external_ids")]
-    private ExternalId _externalId { get; set; }
+    public ExternalId ExternalId { get; set; }
 
     [JsonPropertyName("genres")]
-    private List<string> _genres { get; set; }
+    public List<string> Genres { get; set; }
 
     [JsonPropertyName("label")]
-    private string _label { get; set; }
+    public string Label { get; set; }
 
     [JsonPropertyName("popularity")]
-    private int _popularity { get; set; }
+    public int Popularity { get; set; }
 }

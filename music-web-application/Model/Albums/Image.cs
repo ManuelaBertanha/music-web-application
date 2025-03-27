@@ -5,11 +5,11 @@ namespace music_web_application.Model.Albums;
 public class Image
 {
     [JsonPropertyName("url")]
-    private string _url { get; set; }
+    public string Url { get; set; }
 
     [JsonPropertyName("height")]
-    private int _height { get; set; }
+    public int Height { get; set; }
 
     [JsonPropertyName("width")]
-    private int _width { get; set; }
+    public int Width { get; set; }
 }

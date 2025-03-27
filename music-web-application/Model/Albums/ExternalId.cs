@@ -5,11 +5,11 @@ namespace music_web_application.Model.Albums;
 public class ExternalId
 {
     [JsonPropertyName("isrc")]
-    private string _isrc { get; set; }
+    public string Isrc { get; set; }
 
     [JsonPropertyName("ean")]
-    private string _ean { get; set; }
+    public string Ean { get; set; }
 
     [JsonPropertyName("upc")]
-    private string _upc { get; set; }
+    public string Upc { get; set; }
 }

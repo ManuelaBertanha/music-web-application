@@ -5,5 +5,5 @@ namespace music_web_application.Model.Albums;
 public class ExternalUrl
 {
     [JsonPropertyName("spotify")]
-    private string _spotify { get; set; }
+    public string Spotify { get; set; }
 }

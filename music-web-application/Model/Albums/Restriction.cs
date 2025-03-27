@@ -5,5 +5,5 @@ namespace music_web_application.Model.Albums;
 public class Restriction
 {
     [JsonPropertyName("reason")]
-    private string _reason { get; set; }
+    public string Reason { get; set; }
 }

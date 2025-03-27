@@ -5,20 +5,20 @@ namespace music_web_application.Model.Albums;
 public class Artist
 {
     [JsonPropertyName("external_urls")]
-    private ExternalUrl _externalUrl { get; set; }
+    public ExternalUrl ExternalUrl { get; set; }
 
     [JsonPropertyName("href")]
-    private string _href { get; set; }
+    public string Href { get; set; }
 
     [JsonPropertyName("id")]
-    private string _id { get; set; }
+    public string Id { get; set; }
 
     [JsonPropertyName("name")]
-    private string _name { get; set; }
+    public string Name { get; set; }
 
     [JsonPropertyName("type")]
-    private string _type { get; set; }
+    public string Type { get; set; }
 
     [JsonPropertyName("uri")]
-    private string _uri { get; set; }
+    public string Uri { get; set; }
 }

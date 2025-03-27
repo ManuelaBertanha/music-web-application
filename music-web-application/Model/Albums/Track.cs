@@ -5,23 +5,23 @@ namespace music_web_application.Model.Albums;
 public class Track
 {
     [JsonPropertyName("href")]
-    private string _href { get; set; }
+    public string Href { get; set; }
 
     [JsonPropertyName("limit")]
-    private int _limit { get; set; }
+    public int Limit { get; set; }
 
     [JsonPropertyName("next")]
-    private string _next { get; set; }
+    public string Next { get; set; }
 
     [JsonPropertyName("offset")]
-    private int _offset { get; set; }
+    public int Offset { get; set; }
 
     [JsonPropertyName("previous")]
-    private string _previous { get; set; }
+    public string Previous { get; set; }
 
     [JsonPropertyName("total")]
-    private int _total { get; set; }
+    public int Total { get; set; }
 
     [JsonPropertyName("items")]
-    private List<Item> _items { get; set; }
+    public List<Item> Items { get; set; }
 }
