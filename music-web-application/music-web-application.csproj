@@ -7,6 +7,8 @@
     <RootNamespace>music_web_application</RootNamespace>
     <UserSecretsId>751caf2f-4e20-42de-8fed-e8fb11390cea</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn> <!-- (para não reclamar de comentários ausentes) -->
   </PropertyGroup>
 
   <ItemGroup>
