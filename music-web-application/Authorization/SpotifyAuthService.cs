@@ -1,6 +1,5 @@
 using System.Net.Http.Headers;
 using System.Text.Json;
-using Microsoft.AspNetCore.Authorization;
 
 namespace music_web_application.Authorization;
 
@@ -40,6 +39,8 @@ public class SpotifyAuthService
             Content = new FormUrlEncodedContent(requestBody)
         };
 
+        //var authHeader = $"Basic {Convert.ToBase64String(Encoding.UTF8.GetBytes($"{clientId}:{clientSecret}"))}";
+        //requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Basic", authHeader);
         requestMessage.Content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
         
         var response = await _httpClient.SendAsync(requestMessage);
