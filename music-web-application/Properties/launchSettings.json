@@ -9,7 +9,10 @@
         "SPOTIFY_WEB_API_BASE_URI": "https://api.spotify.com",
         "SPOTIFY_WEB_API_CLIENT_ID": "XXX",
         "SPOTIFY_WEB_API_CLIENT_SECRET": "XXX",
-        "SPOTIFY_WEB_API_TOKEN_ENDPOINT_URI": "https://accounts.spotify.com/api/token"
+        "SPOTIFY_WEB_API_TOKEN_ENDPOINT_URI": "https://accounts.spotify.com/api/token",
+        "SPOTIFY_WEB_API_ALBUMS_ENDPOINT": "/v1/albums",
+        "SPOTIFY_WEB_API_ALBUM_RELEASES_ENDPOINT": "/v1/browse/new-releases",
+        "SPOTIFY_WEB_API_USER_ALBUMS_ENDPOINT": "/v1/me/albums"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:7146;http://localhost:5131"
