@@ -1,5 +1,7 @@
 using System.Reflection;
 using music_web_application.Authorization;
+using music_web_application.Services;
+using music_web_application.Services.Interfaces;
 
 namespace music_web_application
 {
@@ -25,7 +27,6 @@ namespace music_web_application
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
 
-
             builder.Services.AddAuthorization();
             builder.Services.AddControllers();
 
@@ -40,6 +41,8 @@ namespace music_web_application
             
             builder.Services.AddHttpClient<SpotifyAuthService>();
             builder.Services.AddSingleton<SpotifyAuthService>();
+            
+            builder.Services.AddScoped<IAlbumHandlingService, AlbumHandlingService>();
             
             var app = builder.Build();
 
