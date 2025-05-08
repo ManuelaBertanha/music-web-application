@@ -10,6 +10,7 @@ public class StandardErrorResponse
     [JsonPropertyName("stackTrace")]
     public string? StackTrace { get; set; }
     
+    [JsonPropertyName("innerError")]
     public StandardErrorResponse? InnerError { get; set; }
 
     public static StandardErrorResponse CreateErrorResponse(Exception ex, IWebHostEnvironment env)
