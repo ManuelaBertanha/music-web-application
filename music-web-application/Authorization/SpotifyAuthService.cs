@@ -1,5 +1,6 @@
 using System.Net.Http.Headers;
 using System.Text.Json;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace music_web_application.Authorization;
 
@@ -7,17 +8,21 @@ public class SpotifyAuthService
 {
     private readonly HttpClient _httpClient;
     private readonly IConfiguration _configuration;
-    
-    private DateTime _tokenExpiry = DateTime.MinValue;
+    private readonly IMemoryCache _memoryCache;
 
-    public SpotifyAuthService(HttpClient httpClient, IConfiguration configuration)
+    private const string TokenCacheKey = "SpotifyAccessToken";
+
+    public SpotifyAuthService(HttpClient httpClient, IConfiguration configuration, IMemoryCache memoryCache)
     {
         _httpClient = httpClient;
         _configuration = configuration;
+        _memoryCache = memoryCache;
     }
     
     public async Task<string> GetAccessToken()
     {
+        if (_memoryCache.TryGetValue(TokenCacheKey, out string cachedToken)) return cachedToken;
+        
         var clientId = Environment.GetEnvironmentVariable("SPOTIFY_WEB_API_CLIENT_ID") ?? _configuration["Spotify:ClientId"];
         var clientSecret = Environment.GetEnvironmentVariable("SPOTIFY_WEB_API_CLIENT_SECRET") ?? _configuration["Spotify:ClientSecret"];
 
@@ -48,6 +53,8 @@ public class SpotifyAuthService
         
         var jsonResponse = await response.Content.ReadAsStringAsync();
         var token = JsonSerializer.Deserialize<SpotifyToken>(jsonResponse);
+
+        _memoryCache.Set(TokenCacheKey, token.AccessToken, TimeSpan.FromMinutes(55));
 
         return token.AccessToken;
     }
