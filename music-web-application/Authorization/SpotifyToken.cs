@@ -5,11 +5,11 @@ namespace music_web_application.Authorization;
 public class SpotifyToken
 {
     [JsonPropertyName("access_token")]
-    public string AccessToken {  get; set; }
+    public string AccessToken {  get; init; }
 
     [JsonPropertyName("token_type")]
-    public string TokenType {  get; set; }
+    public string TokenType {  get; init; }
 
     [JsonPropertyName("expires_in")]
-    public int ExpiresIn { get; set; }
+    public int ExpiresIn { get; init; }
 }
