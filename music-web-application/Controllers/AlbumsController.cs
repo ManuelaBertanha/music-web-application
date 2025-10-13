@@ -42,7 +42,6 @@ public class AlbumsController : ControllerBase
         catch (Exception ex)
         {
             return StatusCode(500, StandardErrorResponse.CreateErrorResponse(ex, _env));
-            
         }
     }
     
