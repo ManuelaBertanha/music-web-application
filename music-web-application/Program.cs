@@ -5,7 +5,7 @@ using music_web_application.Services.Interfaces;
 
 namespace music_web_application
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
@@ -39,7 +39,8 @@ namespace music_web_application
                 c.IncludeXmlComments(xmlPath);
             });
             
-            builder.Services.AddHttpClient<SpotifyAuthService>();
+            builder.Services.AddHttpClient();
+            builder.Services.AddMemoryCache();
             builder.Services.AddSingleton<SpotifyAuthService>();
             
             builder.Services.AddScoped<IAlbumHandlingService, AlbumHandlingService>();
