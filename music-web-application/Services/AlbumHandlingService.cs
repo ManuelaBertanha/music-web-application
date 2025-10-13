@@ -1,5 +1,6 @@
 using System.Net.Http.Headers;
 using System.Text.Json;
+using music_web_application.Authorization;
 using music_web_application.Model;
 using music_web_application.Model.Albums;
 using music_web_application.Model.Errors;
@@ -10,17 +11,19 @@ namespace music_web_application.Services;
 public class AlbumHandlingService : IAlbumHandlingService
 {
     private readonly HttpClient _httpClient;
-    private readonly IConfiguration _configuration;
+    //private readonly IConfiguration _configuration;
+    private readonly SpotifyAuthService _spotifyAuthService;
 
-    public AlbumHandlingService(HttpClient httpClient, IConfiguration configuration)
+    public AlbumHandlingService(HttpClient httpClient, IConfiguration configuration, SpotifyAuthService spotifyAuthService)
     {
         _httpClient = httpClient;
-        _configuration = configuration;
+        //_configuration = configuration;
+        _spotifyAuthService = spotifyAuthService;
     }
     
     public async Task<Album> FetchAlbumDataById(string id)
     {
-        var albumData = new Album();
+        var accessToken = await _spotifyAuthService.GetAccessToken();
 
         try
         {
@@ -29,7 +32,7 @@ public class AlbumHandlingService : IAlbumHandlingService
                 $"{Environment.GetEnvironmentVariable("SPOTIFY_WEB_API_ALBUMS_ENDPOINT")}/{id}";
 
             var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
-            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", "token");
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
             var response = await _httpClient.SendAsync(request);
             var jsonResponse = await response.Content.ReadAsStringAsync();
@@ -41,8 +44,7 @@ public class AlbumHandlingService : IAlbumHandlingService
                     WebAppException(errorResponse.SpotifyError.Status, errorResponse.SpotifyError.Message);
             }
 
-            albumData = JsonSerializer.Deserialize<Album>(jsonResponse);
-            return albumData;
+            return JsonSerializer.Deserialize<Album>(jsonResponse);
         }
         catch (WebAppException ex)
         {
