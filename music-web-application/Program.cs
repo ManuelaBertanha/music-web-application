@@ -42,8 +42,16 @@ namespace music_web_application
             builder.Services.AddHttpClient();
             builder.Services.AddMemoryCache();
             builder.Services.AddSingleton<SpotifyAuthService>();
-            
+
             builder.Services.AddScoped<IAlbumHandlingService, AlbumHandlingService>();
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowReactApp", policy =>
+                {
+                    policy.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod();
+                });
+            });
             
             var app = builder.Build();
 
@@ -53,6 +61,8 @@ namespace music_web_application
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.UseCors("AllowReactApp");
 
             app.UseHttpsRedirection();
             app.UseAuthentication();
