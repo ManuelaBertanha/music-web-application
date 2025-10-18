@@ -52,8 +52,8 @@ public class SpotifyAuthService
         response.EnsureSuccessStatusCode();
         
         var jsonResponse = await response.Content.ReadAsStringAsync();
-        var token = JsonSerializer.Deserialize<SpotifyToken>(jsonResponse);
-
+        var token = JsonSerializer.Deserialize<SpotifyToken>(jsonResponse) ?? throw new Exception("Failed to deserialize Token data.");
+        
         _memoryCache.Set(TokenCacheKey, token.AccessToken, TimeSpan.FromMinutes(55));
 
         return token.AccessToken;

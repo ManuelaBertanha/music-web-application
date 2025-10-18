@@ -36,15 +36,16 @@ public class AlbumHandlingService : IAlbumHandlingService
 
             var response = await _httpClient.SendAsync(request);
             var jsonResponse = await response.Content.ReadAsStringAsync();
-
+            
             if (!response.IsSuccessStatusCode)
             {
                 var errorResponse = JsonSerializer.Deserialize<SpotifyErrorResponse>(jsonResponse);
-                if (errorResponse != null) throw new 
+                if (errorResponse != null) throw new
                     WebAppException(errorResponse.SpotifyError.Status, errorResponse.SpotifyError.Message);
             }
 
-            return JsonSerializer.Deserialize<Album>(jsonResponse);
+            var album = JsonSerializer.Deserialize<Album>(jsonResponse) ?? throw new Exception("Failed to deserialize Album data.");
+            return album;
         }
         catch (WebAppException ex)
         {
