@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using music_web_application.Authorization;
+using music_web_application.Model;
+using music_web_application.Model.Errors;
 
 namespace music_web_application.Controllers;
 
@@ -8,10 +10,12 @@ namespace music_web_application.Controllers;
 public class SpotifyAuthorizationController : ControllerBase
 {
     private readonly SpotifyAuthService _spotifyAuthService;
+    private readonly IWebHostEnvironment _env;
 
-    public SpotifyAuthorizationController(SpotifyAuthService spotifyAuthService)
+    public SpotifyAuthorizationController(SpotifyAuthService spotifyAuthService, IWebHostEnvironment env)
     {
         _spotifyAuthService = spotifyAuthService;
+        _env = env;
     }
         
     /// <summary>Returns the access token.</summary>
@@ -23,7 +27,19 @@ public class SpotifyAuthorizationController : ControllerBase
     [HttpGet("getAccessToken")]
     public async Task<IActionResult> GetAccessToken()
     {
-        var token = await _spotifyAuthService.GetAccessToken();
-        return Ok(new { access_token = token });
+        try
+        {
+            var token = await _spotifyAuthService.GetAccessToken();
+            return Ok(new { access_token = token });
+        }
+        catch (WebAppException ex)
+        {
+            return StatusCode(ex.StatusCode ?? 500, StandardErrorResponse.CreateErrorResponse(ex, _env));
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, StandardErrorResponse.CreateErrorResponse(ex, _env));
+        }
+        
     }
 }
